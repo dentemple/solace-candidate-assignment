@@ -2,43 +2,29 @@
 
 import { useEffect, useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from './hooks';
+import { selectors, asyncActions } from './state/advocates';
+
 export default function Home() {
-  const [advocates, setAdvocates] = useState([]);
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
+  const dispatch = useAppDispatch();
+
+  const advocates = useAppSelector(selectors.getAdvocates) || [];
+  const filteredAdvocates = useAppSelector(selectors.getFilteredAdvocates) || [];
 
   useEffect(() => {
     console.log('fetching advocates...');
-    fetch('/api/advocates').then((response) => {
-      response.json().then((jsonResponse) => {
-        setAdvocates(jsonResponse.data);
-        setFilteredAdvocates(jsonResponse.data);
-      });
-    });
-  }, []);
+    dispatch(asyncActions.fetchAdvocates());
+  }, [dispatch]);
 
   const onChange = (e) => {
+    // TODO - implement filtering
     const searchTerm = e.target.value;
 
     document.getElementById('search-term').innerHTML = searchTerm;
-
-    console.log('filtering advocates...');
-    const filteredAdvocates = advocates.filter((advocate) => {
-      return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.includes(searchTerm)
-      );
-    });
-
-    setFilteredAdvocates(filteredAdvocates);
   };
 
   const onClick = () => {
     console.log(advocates);
-    setFilteredAdvocates(advocates);
   };
 
   return (
@@ -67,7 +53,7 @@ export default function Home() {
           <th>Phone Number</th>
         </thead>
         <tbody>
-          {filteredAdvocates.map((advocate) => {
+          {filteredAdvocates?.map((advocate) => {
             return (
               <tr key={advocate.id}>
                 <td>{advocate.firstName}</td>
