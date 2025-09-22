@@ -24,6 +24,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "drizzle-orm": "^0.32.1",
     "next": "^14.2.19",
+    "normalize.css": "^8.0.1",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

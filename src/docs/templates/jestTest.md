@@ -10,10 +10,10 @@
 ```tsx
 import { render } from '@testing-library/react';
 
-import TestComponent from './index.tsx';
+import TestComponent from './_COMPONENT_NAME_.tsx';
 
-const componentType = '_COMPONENT_TYPE_';
 const componentName = '_COMPONENT_NAME_';
+const componentType = '_COMPONENT_TYPE_';
 
 describe(componentType, () => {
   afterEach(() => {

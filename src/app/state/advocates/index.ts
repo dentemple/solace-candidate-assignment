@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import * as asyncActions from './asyncActions';
 
 import type { Advocates } from '../../types';
+import { create } from 'domain';
 
 export interface State {
   entries: Advocates;
@@ -43,24 +43,10 @@ export const slice = createSlice({
 export const {} = slice.actions;
 export { asyncActions };
 
-export const selectors = {
-  getAdvocates: (rootState: { advocates: State }) => rootState.advocates.entries || [],
-  getFilteredAdvocates: ({ advocates }: { advocates: State }) => {
-    const searchTerm = ''; // TBD
+export const getAdvocates = (state: { advocates: State }) => state.advocates.entries || [];
 
-    return (advocates.entries || []).filter((advocate) => {
-      return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.some((specialty) => specialty.includes(searchTerm))
-        // advocate.yearsOfExperience.includes(searchTerm) // TODO
-      );
-    });
-  },
-  getIsLoading: (rootState: { advocates: State }) => rootState.advocates.isLoading,
-  getError: (rootState: { advocates: State }) => rootState.advocates.error,
+export const selectors = {
+  getAdvocates,
 };
 
 export default slice.reducer;
