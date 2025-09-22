@@ -2,8 +2,6 @@ import React, { PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import type { RenderOptions } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { http, HttpResponse, delay } from 'msw';
-import { setupServer } from 'msw/node';
 
 import { makeStore } from '../state/store';
 import type { AppStore, RootState } from '../state/store';
@@ -31,12 +29,3 @@ export function renderWithProviders(
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
-
-export const handlers = [
-  http.get('/api/advocates', async () => {
-    await delay(50);
-    return HttpResponse.json(advocateData);
-  }),
-];
-
-export const server = setupServer(...handlers);

@@ -1,0 +1,15 @@
+body {
+  /* styles taken from https://thebestmotherfucking.website/ */
+  font-family:
+    Open Sans,
+    Arial;
+  color: #454545;
+  font-size: 16px;
+  line-height: 1.4;
+  hyphens: auto;
+
+  /* flex styles */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

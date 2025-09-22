@@ -1,0 +1,13 @@
+.search-input {
+  /* flex styles */
+  display: flex;
+  flex-direction: column;
+
+  /* box styles */
+  padding-bottom: 3rem;
+}
+
+.search-input > .row {
+  gap: 1rem;
+  align-items: center;
+}

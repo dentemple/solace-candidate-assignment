@@ -1,14 +1,7 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { Providers } from './providers';
-import './globals.css';
+import { GlobalTheme } from './main';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Solace Candidate Assignment',
-  description: 'Show us what you got',
-};
+export { metadata } from './hooks/useConstants';
 
 export default function RootLayout({
   children,
@@ -17,9 +10,7 @@ export default function RootLayout({
 }>) {
   return (
     <Providers>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
+      <GlobalTheme>{children}</GlobalTheme>
     </Providers>
   );
 }

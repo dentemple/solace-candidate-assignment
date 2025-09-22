@@ -1,0 +1,10 @@
+.row {
+  /* flex styles */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  /* box styles */
+  min-height: 1rem;
+  width: 100%;
+}
